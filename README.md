@@ -1,6 +1,6 @@
 # Terminal Tron
 
-This is a little Tron ~~clone~~ inspired game. The game runs entirely in the terminal.
+This is a little Tron ~~clone~~ inspired game. The game runs entirely in the terminal. It is written in C#, using .NET 4.5, but it probably runs fine on .NET4.0 or Mono.
 
 I started this during a power outage because [@dasilvacontin](https://github.com/dasilvacontin) told me to.
 
