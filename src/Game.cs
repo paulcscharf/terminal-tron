@@ -6,16 +6,12 @@ namespace TerminalTron
 {
     internal class Game
     {
-        private GameState gameState;
+        private readonly GameState gameState;
 
         public Game()
         {
             Console.Clear();
-            Console.CursorVisible = false;
-            Console.SetWindowSize(60, 20);
-            Console.SetBufferSize(60, 20);
-            this.gameState = new GameState(Console.WindowWidth, Console.WindowHeight - 1);
-            Console.CursorVisible = true;
+            gameState = new GameState(Console.WindowWidth, Console.WindowHeight);
         }
 
         public void Run()

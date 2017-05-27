@@ -5,29 +5,29 @@ namespace TerminalTron
 {
     internal class GameState
     {
-        private readonly TileMap tilemap;
         private readonly List<Bike> bikes = new List<Bike>();
 
-        private double time;
+        public double Time { get; private set; }
+
+        public TileMap Tilemap { get; }
 
         public GameState(int width, int height)
         {
-            this.tilemap = new TileMap(width, height);
+            Tilemap = new TileMap(width, height);
 
-            this.bikes.Add(new Bike(this, 5, height / 2, Direction.Right, ConsoleColor.Yellow, new KeyboardBikeController()));
+            bikes.Add(new Bike(this, 5, height / 2, Direction.Right, ConsoleColor.Yellow, new KeyboardBikeController()));
         }
-
-        public double Time { get { return this.time; } }
-        public TileMap Tilemap { get { return this.tilemap; } }
 
         public void Update(double elapsedTime)
         {
-            this.time += elapsedTime;
+            Time += elapsedTime;
 
-            foreach (var bike in this.bikes)
+            foreach (var bike in bikes)
             {
                 bike.Update(elapsedTime);
             }
+            
+            Console.SetCursorPosition(Tilemap.Width, Tilemap.Height - 1);
         }
     }
 }

@@ -7,21 +7,25 @@
         public static readonly Direction Left = new Direction(-1, 0);
         public static readonly Direction Right = new Direction(1, 0);
 
-        private readonly int stepX;
-        private readonly int stepY;
+        static Direction()
+        {
+            Up.Opposite = Down;
+            Down.Opposite = Up;
+            Left.Opposite = Right;
+            Right.Opposite = Left;
+        }
+
+        public int StepX { get; }
+        public int StepY { get; }
+        public Direction Opposite { get; private set; }
 
         private Direction(int stepX, int stepY)
         {
-            this.stepX = stepX;
-            this.stepY = stepY;
+            StepX = stepX;
+            StepY = stepY;
         }
-
-        public int StepX { get { return this.stepX; } }
-        public int StepY { get { return this.stepY; } }
 
         public bool IsOppositeOf(Direction other)
-        {
-            return other != null && this.stepX == -other.stepX && this.stepY == -other.stepY;
-        }
+            => other != null && StepX == -other.StepX && StepY == -other.StepY;
     }
 }

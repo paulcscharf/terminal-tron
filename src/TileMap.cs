@@ -1,55 +1,58 @@
 ﻿using System;
+using static System.ConsoleColor;
 
 namespace TerminalTron
 {
     internal class TileMap
     {
-        private readonly int width;
-        private readonly int height;
-
         private readonly Tile[,] tiles;
+
+        public int Width { get; }
+        public int Height { get; }
 
         public TileMap(int width, int height)
         {
-            this.width = width;
-            this.height = height;
-            this.tiles = new Tile[width, height];
+            Width = width;
+            Height = height;
+            tiles = new Tile[width, height];
 
-            for (int x = 0; x < width; x++)
+            for (var x = 0; x < width; x++)
             {
-                this.tiles[x, 0] = new Tile(true, '#', ConsoleColor.White);
-                this.tiles[x, height - 1] = new Tile(true, '#', ConsoleColor.White);
+                tiles[x, 0] = new Tile(true, '═', White);
+                tiles[x, height - 1] = new Tile(true, '═', White);
             }
-            for (int y = 0; y < height; y++)
+            for (var y = 0; y < height; y++)
             {
-                this.tiles[0, y] = new Tile(true, '#', ConsoleColor.White);
-                this.tiles[width - 1, y] = new Tile(true, '#', ConsoleColor.White);
+                tiles[0, y] = new Tile(true, '║', White);
+                tiles[width - 1, y] = new Tile(true, '║', White);
             }
 
-            this.DrawAll();
+            tiles[0, 0] = new Tile(true, '╔', White);
+            tiles[width - 1, 0] = new Tile(true, '╗', White);
+            tiles[0, height - 1] = new Tile(true, '╚', White);
+            tiles[width - 1, height - 1] = new Tile(true, '╝', White);
+
+            DrawAll();
         }
 
         private void DrawAll()
         {
-            for (int y = 0; y < this.height; y++)
+            for (var y = 0; y < Height; y++)
             {
-                Console.SetCursorPosition(0, y);
-                for (int x = 0; x < this.width; x++)
+                for (var x = 0; x < Width; x++)
                 {
-                    this.tiles[x, y].Draw();
+                    Console.SetCursorPosition(x, y);
+                    tiles[x, y].Draw();
                 }
             }
         }
 
-        public int Width { get { return this.width; } }
-        public int Height { get { return this.height; } }
-
         public Tile this[int x, int y]
         {
-            get { return this.tiles[x, y]; }
+            get => tiles[x, y];
             set
             {
-                this.tiles[x, y] = value;
+                tiles[x, y] = value;
                 value.Draw(x, y);
             }
         }

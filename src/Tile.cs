@@ -4,31 +4,27 @@ namespace TerminalTron
 {
     internal struct Tile
     {
-        private readonly bool isBlocked;
-        private readonly char character;
-        private readonly ConsoleColor color;
+        public bool IsBlocked { get; }
+        public char Character { get; }
+        public ConsoleColor Color { get; }
 
         public Tile(bool isBlocked, char character, ConsoleColor color)
         {
-            this.isBlocked = isBlocked;
-            this.character = character;
-            this.color = color;
+            IsBlocked = isBlocked;
+            Character = character;
+            Color = color;
         }
-
-        public bool IsBlocked { get { return this.isBlocked; } }
-        public char Character { get { return this.character; } }
-        public ConsoleColor Color { get { return this.color; } }
 
         public void Draw(int x, int y)
         {
             Console.SetCursorPosition(x, y);
-            this.Draw();
+            Draw();
         }
 
         public void Draw()
         {
-            Console.ForegroundColor = this.color;
-            Console.Write(this.character);
+            Console.ForegroundColor = Color;
+            Console.Write(Character);
         }
     }
 }

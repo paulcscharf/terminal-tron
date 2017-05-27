@@ -17,9 +17,6 @@ namespace TerminalTron
             }
         }
 
-        public static bool WasHit(ConsoleKey key)
-        {
-            return pressedKeys.Contains(key);
-        }
+        public static bool WasHit(ConsoleKey key) => pressedKeys.Contains(key);
     }
 }
